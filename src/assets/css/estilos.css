@@ -1,0 +1,148 @@
+body{
+    background: #e9ebee;
+    font-family: 'Open Sanns',sans-serif;
+    font-size: 16px;
+}
+/**** HEADER *****/
+header{
+    background: #1176bc;
+    padding: 10px 0;
+}
+header .menu .imagen img{
+    border-radius: 100%;
+}
+
+main .barra nav{
+    border-bottom: 1px solid #c7c8ca;
+    padding-bottom: 20px;
+}
+
+main .barra nav a{
+    display: block;
+    padding: 3px;
+    color: rgb(155, 150, 150);
+}
+
+main .barra nav a:hover{
+    color: #615e5e;
+    text-decoration: none;
+}
+
+
+
+/*CONTENIDO PRINCIPAL*/
+
+/*PUBLICAR*/
+main .contenido_principal .publicar .foto a{
+    overflow: hidden;
+    margin-top: 20px;
+}
+main .contenido_principal .publicar .foto img{
+    border-radius: 100%;
+}
+.contenedor_botones{
+    border-bottom: 1px solid #dce1e4;
+}
+main .publicacion .texto{
+    background: #f0f0f1;
+    color: #615e5e;
+    font-size: 14px;
+}
+
+main .publicacion .comentario{
+    border-bottom: 1px solid #bbadad;
+}
+
+/*Menu lateral derecha*/
+main .barra-lateral-derecha h3{
+    font-size: 16px;
+    font-family: 'Roboto',sans-serif;
+    text-align: center;
+}
+
+/* MEDIA QUERYS*/
+@media screen and (max-width:767px){
+    main .btn-menu{
+        display: block;
+        border: 1px solid #00609c;
+        padding: 5px 10px;
+        font-size: 14px;
+        background: linear-gradient(to bottom,#1a87cd,#1176bc 100%);
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    main .btn-menu:hover{
+        text-decoration: none;
+        background: #0d659d;
+    }
+
+    main .fondo-enlace{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        background: rgba(0,0,0,.5);
+        z-index: 99;
+        display: none;
+    }
+    main .fondo-enlace.active{
+        display: block;
+    }
+
+    main .barra{
+        width: 85%;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,.85);
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        transform: translateX(-99.99%);
+        transition: all .3s ease;
+        overflow: scroll;
+    }
+
+    main .barra.active{
+        transform: translateX(0%);
+    }
+    main .barra nav{
+        border-bottom: none;
+    }
+
+    main .barra nav a{
+        padding: 20px;
+        color: #fff;        
+    }
+
+    main .barra nav a:hover{
+        color: #3c3d3d;
+        background: #fff;
+    }
+}
+
+@media screen and (max-width:575px){
+    header .menu{
+        padding: 15px 50px 0 15px;
+    }
+
+    main .contenido_principal  .publicacion .foto{
+        padding-right: 0;
+    }
+
+    main .contenido_principal  .publicacion .foto a{
+        width: 30px;
+        height: 30px;
+    }
+    main .contenido_principal .publicar .foto{
+        display: none
+    }
+
+
+}
