@@ -1,6 +1,11 @@
 <main class="container mt-3">
     <div class="row">
         <div class="col-md-2 barra" id="barra">
+            <div class="form-group">
+                <input type="text" placeholder="Nuevo ventana" class="form-control mb-1">
+                <input type="button" value="Agregar" class="btn btn-secondary btn-sm">
+            </div>
+
             <nav class="pl-0">
                 <a href="#"><i class="fas fa-users mr-3"></i>Amigos</a>
                 <a href="#"><i class="fas fa-comments mr-3"></i>Mensaje privados</a>
@@ -39,7 +44,7 @@
                                     <input type="file" value="imagen">
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary btn-sm">Publicar</button>
+                                    <button class="btn btn-secondary btn-sm">Publicar producto</button>
                                 </div>
                             </div>
                         </form>
@@ -237,19 +242,7 @@
             </div>
         </div>
         <!--PUBLICIDAD-->
-        <div class="col-3 barra-lateral-derecha d-none d-lg-block">
-            <h3>Publicidad</h3>
-            <div class="ads">
-                <a href="#" class="mb-3 d-block"><img src="./img/bg2.jpg" alt="" width="200"></a>
-                <a href="#" class="mb-3 d-block"><img src="./img/bg3.jpg" alt="" width="200"></a>
-                <a href="#" class="mb-3 d-block"><img src="./img/bg4.jpg" alt="" width="200"></a>
-            </div>
-            <footer class="justify-content-between">
-                <a href="#" class="w-100">Privacidad</a>
-                <a href="#" class="w-100">Condiciones</a>
-                <a href="#" class="w-100">Publicidad</a>
-                <p class="mt-2">Red social</p>
-            </footer>
-        </div>
+        <app-publicidad></app-publicidad>
+
     </div>
 </main>
