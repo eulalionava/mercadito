@@ -1,9 +1,18 @@
+<div>
+    <form #formPublicidad="ngForm">
+        <input type="file" class="form-control mb-1" (change)="fileChangePublicidad($event)">
+        <input type="text" placeholder="Escribe el texto de tu publicidad" class="form-control mb-1"
+        name="publi" #publi="ngModel" [(ngModel)]="publicidad.publicidad" required>
+        <input type="button" class="btn btn-secondary btn-sm" value="Agregar publicidad" 
+        (click)="agregarPublicidad(formPublicidad)" [disabled]="!formPublicidad.form.valid">
+    </form>
+</div>
 <div class="col-3 barra-lateral-derecha d-none d-lg-block">
     <h3>Publicidad</h3>
     <div class="ads">
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/nami.jpg" alt="" width="200"></a>
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/up-im.png" alt="" width="200"></a>
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/user_chat.png" alt="" width="200"></a>
+        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_359207348298623.jpeg" alt="" width="300" height="200"></a>
+        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_420596928800767.jpeg" alt="" width="300" height="200"></a>
+        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_439559016689910.jpeg" alt="" width="300" height="200"></a>
     </div>
     <footer class="justify-content-between">
         <a href="#" class="w-100">Privacidad</a>

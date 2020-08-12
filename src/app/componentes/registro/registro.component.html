@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="wrap">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 mt-5">
+                <form action="">
+                    <div class="card">
+                        <div class="card-header bg-default">
+                            <h4 class="card-title">Resgistro de usuario</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Nombre:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtNombre" #txtNombre="ngModel" [(ngModel)]="usuario.nombre" required >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Apellidos:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtApellidos" #txtApellidos="ngModel" [(ngModel)]="usuario.apellidos" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Edad:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtEdad" #txtEdad="ngModel" [(ngModel)]="usuario.edad" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Comunidad:</label>
+                                        <select name="sel" #sel="ngModel" [(ngModel)]="usuario.comunidad" class="form-control">
+                                            <option value="San Miguel">San Miguel</option>
+                                            <option value="San Antonio">San Antonio</option>
+                                            <option value="Ahuacataya">Ahuacataya</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Fecha de Nacimiento:</label>
+                                        <input type="date" class="form-control"
+                                        name="txtNacimiento" #txtNacimiento="ngModel" [(ngModel)]="usuario.nacimiento" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Telefono:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtTelefono" #txtTelefono="ngModel" [(ngModel)]="usuario.telefono" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Correo Electronico:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtEmail" #txtEmail="ngModel" [(ngModel)]="usuario.correo" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Usuario:</label>
+                                        <input type="text" class="form-control"
+                                        name="txtUser" #txtUser="ngModel" [(ngModel)]="usuario.usuario" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Contraseña:</label>
+                                        <input type="password" class="form-control"
+                                        name="txtContra" #txtContra="ngModel" [(ngModel)]="usuario.password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Repetir contraseña:</label>
+                                        <input type="password" class="form-control"
+                                        name="txtRepetir" #txtRepetir="ngModel" [(ngModel)]="usuario.repetir" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <a [routerLink]="['/login']">
+                                            <input type="button" class="form-control" value="Regresar">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="button" class="form-control btn btn-primary" value="Finalizar registro" 
+                                        (click)="registrar_usuario()">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

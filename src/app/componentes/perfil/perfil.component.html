@@ -1,0 +1,183 @@
+<main class="container mt-3">
+    <div class="row">
+        <div class="col-md-2 barra" id="barra">
+
+            <nav class="pl-0">
+                <a href="#">Home</a>
+                <h4>Tiendas</h4>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 1</a>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 2</a>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 3</a>
+            </nav>
+        </div>
+
+        <a href="#" class="fondo-enlace d-md-none" id="fondo-enlace"></a>
+
+        <div class="col-md-5 contenido_principal">
+
+            <!--MENU PARA MOSTRAR LAS OPCIONES-->
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="btn-menu d-md-none d-flex justify-content-between" id="btn-menu">
+                        <span>Menu</span>
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <!--INFORMACION DE PERFIL-->
+            <div class="card">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="../../../assets/imgs/received_450481298882493.jpeg" class="card-img-top img-rouden" height="300">
+                        </div>
+                        <div class="card-body" >
+                            <div class="d-flex justify-content-between mb-2">
+                                <h5 style="text-align: center;">Mariela Hernandez</h5>
+                                <button *ngIf="miperfil" class="btn btn-success btn-sm" (click)="activar_edicion()">Editar</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm form-control" data-toggle="modal" data-target="#exampleModal">
+                                Cambiar foto de perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Subir foto de perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="../../../assets/imgs/up-im.png" alt="" class="card-img-top img-rouden" height="200">
+                            </div>
+                            <div class="card-footer">
+                                <input type="file" (change)="foto_perfil($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" (click)="cambiarPerfil()">Guardar cambios</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="col" *ngIf="activarEdicion">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-titte">Informacion personal</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Nombre:</label>
+                                <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Apellidos:</label>
+                                <input type="text" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="usuario.apellidos">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Edad:</label>
+                                <input type="text" class="form-control" name="edad" #edad="ngModel" [(ngModel)]="usuario.edad">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Comunidad:</label>
+                                <input type="text" class="form-control" name="comunidad" #comunidad="ngModel" [(ngModel)]="usuario.comunidad"  disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Fecha de nacimiento:</label>
+                                <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="usuario.nacimiento">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Telefono:</label>
+                                <input type="number" class="form-control" maxlength="15" name="telefono" #telefono="ngModel" [(ngModel)]="usuario.telefono">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" style="font-size: 12px;">Correo electronico:</label>
+                                <input type="text" class="form-control" maxlength="45" name="email" #email="ngModel" [(ngModel)]="usuario.correo">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Guardar cambios" class="form-control btn btn-outline-secondary" (click)="editarPerfi()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col" *ngIf="!activarEdicion">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-titte">Informacion personal</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td class="">{{usuario.nombre}}</td>
+                            </tr>
+                            <tr>
+                                <td>Apellidos:</td>
+                                <td>{{usuario.apellidos}}</td>
+                            </tr>
+                            <tr>
+                                <td>Edad:</td>
+                                <td>{{usuario.edad}}</td>
+                            </tr>
+                            <tr>
+                                <td>Telefono:</td>
+                                <td>{{usuario.telefono}}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de nacimiento:</td>
+                                <td>{{usuario.nacimiento}}</td>
+                            </tr>
+                            <tr>
+                                <td>Comunidad:</td>
+                                <td>{{usuario.comunidad}}</td>
+                            </tr>
+                            <tr>
+                                <td>Correo electronico:</td>
+                                <td>{{usuario.correo}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+

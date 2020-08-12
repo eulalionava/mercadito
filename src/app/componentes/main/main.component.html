@@ -7,13 +7,11 @@
             </div>
 
             <nav class="pl-0">
-                <a href="#"><i class="fas fa-users mr-3"></i>Amigos</a>
-                <a href="#"><i class="fas fa-comments mr-3"></i>Mensaje privados</a>
-                <a href="#"><i class="fas fa-users mr-3"></i>Paginas</a>
-                <a href="#"><i class="fas fa-play mr-3"></i>Videos</a>
-                <a href="#"><i class="fas fa-book mr-3"></i>Fotos</a>
-                <a href="#"><i class="fas fa-music mr-3"></i>Musica</a>
-                <a href="#"><i class="fas fa-book mr-3"></i>Libros</a>
+                <a href="#">Home</a>
+                <h4>Tiendas</h4>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 1</a>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 2</a>
+                <a href="#"><i class="fas fa-users mr-3"></i>Tienda 3</a>
             </nav>
         </div>
 
@@ -37,14 +35,15 @@
                         <a href="#"><img class="d-inline-block" src="../../../assets/imgs/received_441834900013363.jpeg" alt="Imagen" width="50" height="50"></a>
                     </div>
                     <div class="col">
-                        <form action="">
-                            <textarea name="mensaje" class="form-control" placeholder="Describe tu producto"></textarea>
+                        <form #formPublicacion="ngForm">
+                            <textarea name="mensaje" #mensaje="ngModel" [(ngModel)]="publicacion.publicacion" 
+                            class="form-control" placeholder="Describe tu producto" required></textarea>
                             <div class="contenedor_botones d-flex justify-content-between p-2">
                                 <div class="media">
-                                    <input type="file" value="imagen">
+                                    <input type="file" value="imagen" (change)="fileChangePublica($event)">
                                 </div>
                                 <div>
-                                    <button class="btn btn-secondary btn-sm">Publicar producto</button>
+                                    <button class="btn btn-secondary btn-sm" (click)="publicar(formPublicacion)" [disabled]="!formPublicacion.form.valid">Publicar producto</button>
                                 </div>
                             </div>
                         </form>
@@ -52,26 +51,7 @@
                 </div>
             </div>
             <!-- Publicaciones-->
-            <div class="publicacion">
-                <div class="row">
-                    <div class="col-auto foto">
-                        <a href="">
-                            <img src="../../../assets/imgs/received_450481298882493.jpeg" class="rounded-circle" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <div class="post">
-                            <a href="#" class="nombre d-inline-block mb-2">Eulalio cruz nava</a>
-                            <p class="texto p-2 mt-1">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet repellat distinctio 
-                            </p>
-                            <div class="caja_botones d-flex justify-content-between align-items-center">
-                                <button class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
-                                <p>15 <i class="fas fa-thumbs-up"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="publicacion" *ngFor="let publicacion of publications">
 
                 <div class="row">
                     <div class="col-auto foto">
@@ -81,15 +61,18 @@
                     </div>
                     <div class="col">
                         <div class="post">
-                            <a href="#" class="nombre d-inline-block mb-2">Eulalio cruz nava</a>
+                            <a [routerLink]="['/perfil',publicacion.usuario.user_id]" class="nombre d-inline-block mb-2">{{publicacion.usuario['user_nombre']}} {{publicacion.usuario['user_apellidos']}}</a>
                             <p class="texto p-2 mt-1">
-                                <img src="img/carousel1.jpg" alt="" width="100%"> 
                                 <small>
-                                    Se vende este producto,el precio del kilo es de $20
+                                    <h6>{{publicacion.publicaciones['publicacion']}}</h6>
                                 </small>
+                                <img src="http://localhost:4000/getImagen/{{publicacion.publicaciones['imagen']}}" alt="" width="100%" height="250"> 
                             </p>
                             <div class="caja_botones d-flex justify-content-between align-items-center">
-                                <button class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
+                                <div>
+                                    <button class="btn btn-primary btn-sm"><i class="fas fa-thumbs-up"></i></button>
+                                    <a type="button" class="btn btn-outline-secondary btn-sm" href="#">mas comentarios</a> 
+                                </div>
                                 <p>15 <i class="fas fa-thumbs-up"></i></p>
                             </div>
                         </div>
@@ -100,6 +83,23 @@
                 <div class="row">
                     <div class="col-10 offset-2">
                             <div class="comentarios">
+                                
+                                <!--MUESTRA DE COMENTARIOS-->
+                                <div class="row no-gutters comentario mt-2 p-2" *ngFor="let comentar of publicacion.comentarios">
+                                    <div class="col-auto">
+                                        <a href="#">
+                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <p class="respuesta" style="font-size: 12px;">
+                                            {{comentar.comentario}}
+                                        </p>
+                                        <a href="#" style="font-size: 12px;">Me gusta</a>
+                                    </div>
+                                </div>
+                                
+                                
                                 <!--COMENTARIO-->
                                 <div class="row no-gutters comentario mt-2 p-2">
                                     <div class="col-auto">
@@ -109,36 +109,9 @@
                                     </div>
                                     <div class="col">
                                         <form action="">
-                                            <textarea name="" placeholder="Comentario" class="form-control"></textarea>
+                                            <input name="comen" #comen="ngModel" [(ngModel)]="comentario.comentario" placeholder="realiza tu comentario" 
+                                            class="form-control" (keyup.enter)="realizarcomentario(publicacion.publicaciones.id)"  autocomplete="true" />
                                         </form>
-                                    </div>
-                                </div>
-                                <!--MUESTRA DE COMENTARIOS-->
-                                <div class="row no-gutters comentario mt-2 p-2">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <p class="respuesta">
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam eum nobis distinctio voluptates quam aliquam sapiente in facere ipsam, dolorum obcaecati, perspiciatis quas reiciendis id cum aut quae excepturi ducimus.
-                                        </p>
-                                        <a href="">Me gusta</a>
-                                    </div>
-                                </div>
-
-                                <div class="row no-gutters comentario mt-2 p-2">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <p class="respuesta">
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        </p>
-                                        <a href="">Me gusta</a>
                                     </div>
                                 </div>
                             </div>
@@ -146,100 +119,6 @@
                 </div>
             </div>
 
-            <!-- Publicaciones-->
-            <div class="publicacion">
-                <div class="row">
-                    <div class="col-auto foto">
-                        <a href="">
-                            <img src="../../../assets/imgs/received_439559016689910.jpeg" class="rounded-circle" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <div class="post">
-                            <a href="#" class="nombre d-inline-block mb-2">Eulalio cruz nava</a>
-                            <p class="texto p-2 mt-1">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet repellat distinctio 
-                            </p>
-                            <div class="caja_botones d-flex justify-content-between align-items-center">
-                                <button class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
-                                <p>15 <i class="fas fa-thumbs-up"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-auto foto">
-                        <a href="">
-                            <img src="../../../assets/imgs/received_441834900013363.jpeg" class="rounded-circle" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <div class="post">
-                            <a href="#" class="nombre d-inline-block mb-2">Eulalio cruz nava</a>
-                            <p class="texto p-2 mt-1">
-                                <img src="../../../assets/imgs/received_439559016689910.jpeg" alt="" width="100%"> 
-                                <small>
-                                    Se vende este producto,el precio del kilo es de $20
-                                </small>
-                            </p>
-                            <div class="caja_botones d-flex justify-content-between align-items-center">
-                                <button class="btn btn-primary"><i class="fas fa-thumbs-up"></i></button>
-                                <p>15 <i class="fas fa-thumbs-up"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--REALIZAR COMENTARIOS-->
-                <div class="row">
-                    <div class="col-10 offset-2">
-                            <div class="comentarios">
-                                <!--COMENTARIO-->
-                                <div class="row no-gutters comentario mt-2 p-2">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <form action="">
-                                            <textarea name="" placeholder="Comentario" class="form-control"></textarea>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!--MUESTRA DE COMENTARIOS-->
-                                <div class="row no-gutters comentario mt-2 p-2">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <p class="respuesta">
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam eum nobis distinctio voluptates quam aliquam sapiente in facere ipsam, dolorum obcaecati, perspiciatis quas reiciendis id cum aut quae excepturi ducimus.
-                                        </p>
-                                        <a href="">Me gusta</a>
-                                    </div>
-                                </div>
-
-                                <div class="row no-gutters comentario mt-2 p-2">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <p class="respuesta">
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        </p>
-                                        <a href="">Me gusta</a>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!--PUBLICIDAD-->
         <app-publicidad></app-publicidad>
