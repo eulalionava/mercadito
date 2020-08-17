@@ -40,6 +40,7 @@ export class MainService {
 
   }
 
+  //Todas las publicaciones
   getPublicaciones(){
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type','application/json');
@@ -47,6 +48,7 @@ export class MainService {
     return this._http.get( this.url + 'getAllPublicaciones',{headers:headers});
   }
 
+  //Comentarios por publicacion
   getComentarios(publicacionID){
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type','application/json');
@@ -55,6 +57,7 @@ export class MainService {
 
   }
 
+  //Usuario de la publicacion
   getUsuarios(usuarioID){
 
     let headers = new HttpHeaders();
@@ -64,6 +67,7 @@ export class MainService {
 
   }
 
+  //Comentario a una publicacion
   insertComentario(datos){
     let params = JSON.stringify({datos:datos})
     let headers = new HttpHeaders();

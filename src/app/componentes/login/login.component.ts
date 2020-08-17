@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { LoginService } from '../../services/logeo.service';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,7 @@ export class LoginComponent implements OnInit {
       private _serviceLogin:LoginService,
       private _router:Router
     ) { 
-      this.usuario = new Usuario(1,'','','','','','','','','','','U')
+      this.usuario = new Usuario(1,'','','','','','','','','','','','U')
   }
 
   ngOnInit(): void {

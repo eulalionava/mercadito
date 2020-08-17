@@ -29,14 +29,19 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-header">
-                            <img src="../../../assets/imgs/received_450481298882493.jpeg" class="card-img-top img-rouden" height="300">
+                            <div *ngIf="usuario.imagen == null">
+                                <img src="../../../assets/imgs/usuario.png" class="card-img-top img-rouden" height="300">
+                            </div>
+                            <div *ngIf="usuario.imagen != null">
+                                <img src="http://localhost:4000/getimgperfil/{{usuario.imagen}}" class="card-img-top img-rouden" height="300">
+                            </div>
                         </div>
                         <div class="card-body" >
                             <div class="d-flex justify-content-between mb-2">
                                 <h5 style="text-align: center;">Mariela Hernandez</h5>
                                 <button *ngIf="miperfil" class="btn btn-success btn-sm" (click)="activar_edicion()">Editar</button>
                             </div>
-                            <button type="button" class="btn btn-secondary btn-sm form-control" data-toggle="modal" data-target="#exampleModal">
+                            <button *ngIf="miperfil" type="button" class="btn btn-secondary btn-sm form-control" data-toggle="modal" data-target="#exampleModal">
                                 Cambiar foto de perfil
                             </button>
                         </div>
@@ -57,7 +62,10 @@
                     <div class="modal-body">
                         <div class="card">
                             <div class="card-header">
-                                <img src="../../../assets/imgs/up-im.png" alt="" class="card-img-top img-rouden" height="200">
+                                <div *ngIf="usuario.imagen == null">
+                                    <img src="../../../assets/imgs/usuario.png" alt="" class="card-img-top img-rouden" height="200">
+
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <input type="file" (change)="foto_perfil($event)">
@@ -66,7 +74,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" (click)="cambiarPerfil()">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cambiarPerfil()">Guardar cambios</button>
                     </div>
                 </div>
                 </div>

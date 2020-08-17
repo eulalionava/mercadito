@@ -32,7 +32,7 @@
                 <!--ICONOS-->
                 <div class="row">
                     <div class="col-auto foto">
-                        <a href="#"><img class="d-inline-block" src="../../../assets/imgs/received_441834900013363.jpeg" alt="Imagen" width="50" height="50"></a>
+                        <a href="#"><img class="d-inline-block" src="http://localhost:4000/getimgperfil/{{imagenDePerfil}}" alt="Imagen" width="50" height="50"></a>
                     </div>
                     <div class="col">
                         <form #formPublicacion="ngForm">
@@ -55,13 +55,15 @@
 
                 <div class="row">
                     <div class="col-auto foto">
-                        <a href="">
-                            <img src="../../../assets/imgs/received_450481298882493.jpeg" class="rounded-circle" width="50" height="50" alt="">
+                        <a [routerLink]="['/perfil',publicacion.usuario.user_id]">
+                            <img src="http://localhost:4000/getimgperfil/{{publicacion.usuario.user_imagen}}" class="rounded-circle" width="50" height="50" alt="">
                         </a>
                     </div>
                     <div class="col">
                         <div class="post">
-                            <a [routerLink]="['/perfil',publicacion.usuario.user_id]" class="nombre d-inline-block mb-2">{{publicacion.usuario['user_nombre']}} {{publicacion.usuario['user_apellidos']}}</a>
+                            <a [routerLink]="['/perfil',publicacion.usuario.user_id]" class="nombre d-inline-block mb-2">
+                                {{publicacion.usuario['user_nombre']}} {{publicacion.usuario['user_apellidos']}}
+                            </a>
                             <p class="texto p-2 mt-1">
                                 <small>
                                     <h6>{{publicacion.publicaciones['publicacion']}}</h6>
@@ -71,10 +73,53 @@
                             <div class="caja_botones d-flex justify-content-between align-items-center">
                                 <div>
                                     <button class="btn btn-primary btn-sm"><i class="fas fa-thumbs-up"></i></button>
-                                    <a type="button" class="btn btn-outline-secondary btn-sm" href="#">mas comentarios</a> 
+                                    <a href="#comentario{{publicacion.publicaciones['id']}}" type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal">
+                                        mas comentarios
+                                    </a>
                                 </div>
                                 <p>15 <i class="fas fa-thumbs-up"></i></p>
                             </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="comentario{{publicacion.publicaciones['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Comentarios</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <img src="http://localhost:4000/getImagen/{{publicacion.publicaciones['imagen']}}" class="card-img-top img-rouden" height="200">
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row no-gutters comentario mt-2 p-2" *ngFor="let comentar of publicacion.comentarios;let i = index">
+                                                    <div class="col-auto">
+                                                        <a href="#">
+                                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_439559016689910.jpeg" width="50" height="50" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="respuesta" style="font-size: 12px;">
+                                                            {{comentar.comentario}}
+                                                        </p>
+                                                        <a href="#" style="font-size: 12px;">Me gusta</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- final modal -->
                         </div>
                     </div>
                 </div>
@@ -85,26 +130,29 @@
                             <div class="comentarios">
                                 
                                 <!--MUESTRA DE COMENTARIOS-->
-                                <div class="row no-gutters comentario mt-2 p-2" *ngFor="let comentar of publicacion.comentarios">
-                                    <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
-                                        </a>
+                                <div *ngFor="let comentar of publicacion.comentarios;let i = index">
+                                    <div class="row no-gutters comentario mt-2 p-2" *ngIf="i < 3">
+                                        <div class="col-auto">
+                                            <a [routerLink]="['/perfil',publicacion.usuario.user_id]">
+                                                <img class="rounded-circle mr-3" src="http://localhost:4000/getimgperfil/{{publicacion.usuario.user_imagen}}" width="50" height="50" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <p class="respuesta" style="font-size: 12px;">
+                                                {{comentar.comentario}}
+                                            </p>
+                                            <a href="#" style="font-size: 12px;">Me gusta</a>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <p class="respuesta" style="font-size: 12px;">
-                                            {{comentar.comentario}}
-                                        </p>
-                                        <a href="#" style="font-size: 12px;">Me gusta</a>
-                                    </div>
+
                                 </div>
                                 
                                 
-                                <!--COMENTARIO-->
+                                <!--REALIZAR UN COMENTARIO-->
                                 <div class="row no-gutters comentario mt-2 p-2">
                                     <div class="col-auto">
-                                        <a href="#">
-                                            <img class="rounded-circle mr-3" src="../../../assets/imgs/received_450481298882493.jpeg" width="50" height="50" alt="">
+                                        <a [routerLink]="['/perfil',id_usuario]">
+                                            <img class="rounded-circle mr-3" src="http://localhost:4000/getimgperfil/{{imagenDePerfil}}" width="50" height="50" alt="">
                                         </a>
                                     </div>
                                     <div class="col">

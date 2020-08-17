@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public imagenDePerfil
+  public user
 
-  constructor() { }
+  constructor() { 
+    this.user = JSON.parse(localStorage.getItem('sesion'))
+    this.imagenDePerfil = this.user.usuarioDB.user_imagen
+  }
 
   ngOnInit(): void {
   }

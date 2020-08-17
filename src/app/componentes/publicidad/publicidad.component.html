@@ -9,15 +9,12 @@
 </div>
 <div class="col-3 barra-lateral-derecha d-none d-lg-block">
     <h3>Publicidad</h3>
-    <div class="ads">
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_359207348298623.jpeg" alt="" width="300" height="200"></a>
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_420596928800767.jpeg" alt="" width="300" height="200"></a>
-        <a href="#" class="mb-3 d-block"><img src="../../../assets/imgs/received_439559016689910.jpeg" alt="" width="300" height="200"></a>
+    <div class="ads" *ngFor="let publi of publicidades">
+        <a href="#" class="mb-3 d-block"><img src="http://localhost:4000/imgpublicidad/{{publi.imagen}}" alt="" width="300" height="200"></a>
     </div>
     <footer class="justify-content-between">
         <a href="#" class="w-100">Privacidad</a>
         <a href="#" class="w-100">Condiciones</a>
         <a href="#" class="w-100">Publicidad</a>
-        <p class="mt-2">Red social</p>
     </footer>
 </div>

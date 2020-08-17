@@ -10,20 +10,33 @@ import { Publicidad } from '../../models/publicidad';
 export class PublicidadComponent implements OnInit {
 
   public publicidad:Publicidad
+  public publicidades:any
 
   constructor(
     private _servicePublicidad:PublicidadService
-  ) {
+    ) {
     this.publicidad = new Publicidad(1,'','','S')
   }
 
   ngOnInit(): void {
+    this.getAllPublicidad();
   }
 
 //capturar datos de imagen de publicacion 
   public filesPublidadUpload:Array<File>;
   fileChangePublicidad(filePublicidad:any){
     this.filesPublidadUpload = <Array<File>>filePublicidad.target.files;
+  }
+
+  getAllPublicidad(){
+    this._servicePublicidad.allPublicidad().subscribe(
+      response=>{
+        this.publicidades = response['data'];
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    )
   }
 
   agregarPublicidad(form){

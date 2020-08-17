@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
     private _servicePerfil:PerfilService,
     private _router:Router
   ) { 
-    this.usuario = new Usuario(1,'','','','','','','','','','','')
+    this.usuario = new Usuario(1,'','','','','','','','','','','','')
     this.miperfil = false
     this.activarEdicion = false
   }
@@ -30,7 +30,6 @@ export class PerfilComponent implements OnInit {
   getUsuario(){
     let usuarioSesion = JSON.parse(localStorage.getItem('sesion'));
     let id = this._route.snapshot.paramMap.get('idUser');
-    
     this._servicePerfil.getUsuario(id).subscribe(
       response=>{
         this.usuario.nombre     = response['data']['user_nombre'];
@@ -40,6 +39,7 @@ export class PerfilComponent implements OnInit {
         this.usuario.nacimiento = response['data']['user_fechaNacimiento'];
         this.usuario.comunidad  = response['data']['user_comunidad'];
         this.usuario.correo     = response['data']['user_correo'];
+        this.usuario.imagen     = response['data']['user_imagen'];
 
         //Verifica si usuario del perfil pertenece a la sesion
         if(usuarioSesion.usuarioDB.user_id === response['data']['user_id']){
@@ -83,9 +83,10 @@ export class PerfilComponent implements OnInit {
   }
 
   cambiarPerfil(){
-    this._servicePerfil.updateFotoPerfil(this.filesPerfilUpload).subscribe(
+    let id = this._route.snapshot.paramMap.get('idUser');
+    this._servicePerfil.updateFotoPerfil(this.filesPerfilUpload,id).subscribe(
       response=>{
-        console.log(response);
+        this.getUsuario();
       },
       error=>{
         console.log(<any>error);

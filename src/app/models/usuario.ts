@@ -8,6 +8,7 @@ export class Usuario{
         public nacimiento:string,
         public telefono:string,
         public correo:string,
+        public imagen:string,
         public usuario:string,
         public password:string,
         public repetir:string,

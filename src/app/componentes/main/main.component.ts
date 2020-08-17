@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../services/main.service';
 
+
+
 import { Publicacion } from '../../models/publicacion';
 import { Comentario } from '../../models/comentario';
 
@@ -9,12 +11,15 @@ import { Comentario } from '../../models/comentario';
   templateUrl: './main.component.html'
 })
 export class MainComponent implements OnInit {
+
   public publicaciones:any;
   public publications:any
   public comentarios:any
   public publicacion:Publicacion
   public comentario:Comentario
   public users:any
+  public imagenDePerfil
+  public id_usuario
 
   constructor(
     private _serviceMain:MainService
@@ -23,6 +28,8 @@ export class MainComponent implements OnInit {
     this.comentario = new Comentario(1,0,0,'','S')
 
     this.users = JSON.parse(localStorage.getItem('sesion'));
+    this.imagenDePerfil = this.users.usuarioDB.user_imagen
+    this.id_usuario = this.users.usuarioDB.user_id
 
   }
 
@@ -40,7 +47,7 @@ export class MainComponent implements OnInit {
 
   //Realizar una publicacion
   publicar(form){
-
+ 
     let token = this.users.token;
 
     if(this.filesPublicaUpload){

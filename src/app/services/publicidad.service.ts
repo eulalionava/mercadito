@@ -15,6 +15,7 @@ export class PublicidadService {
         this.url = GLOBAL.url
     }
 
+    //REGISTRAR UNA NUEVA PUBLICIDAD
     registrarPublicidad(files:Array<File>,publicidad:any){
         const formData = new FormData();
 
@@ -27,4 +28,13 @@ export class PublicidadService {
 
         return this._http.post(this.url + 'publicidad',formData);
     }
+
+    allPublicidad(){
+        let headers = new HttpHeaders();
+        headers=headers.set('Content-Type','application/json');
+
+        return this._http.get(this.url + 'publicidades',{headers:headers});
+
+    }
+
 }

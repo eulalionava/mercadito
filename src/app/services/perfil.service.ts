@@ -33,13 +33,15 @@ export class PerfilService {
 
     }
 
-    updateFotoPerfil(foto:Array<File>){
+    updateFotoPerfil(foto:Array<File>,id){
 
         const formData = new FormData();
 
         for(let i=0; i< foto.length;i++){
-            formData.append('archivo',foto[i],foto[i].name);
+            formData.append('foto',foto[i],foto[i].name);
         }
+        formData.append('id',id);
+        
         return this._http.post(this.url + 'cambiarfoto',formData);
     }
     
