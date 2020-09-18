@@ -57,9 +57,9 @@ export class MainComponent implements OnInit {
       this._serviceMain.getCodigo(codigo,token).subscribe(
         response=>{
           if(response['ok']){
-
             this.publicacion.user_id =this.users.usuarioDB.user_id;
             this.publicacion.codigo_id = response['data']['codigo_id'];
+
             //Inserta publicacion
             this._serviceMain.insertPublicacion(this.filesPublicaUpload,this.publicacion).subscribe(
               response=>{
@@ -97,6 +97,7 @@ export class MainComponent implements OnInit {
           //Comentarios por publicacion
           this._serviceMain.getComentarios(this.publicaciones[i].id).subscribe(
             response=>{
+              console.log(response);
               //Usuario por publicaciones
               this._serviceMain.getUsuarios(this.publicaciones[i].user_id).subscribe(
                 respuesta=>{
@@ -112,7 +113,7 @@ export class MainComponent implements OnInit {
           )
         }
         this.publications =  arreglo
-        console.log(this.publications);
+        // console.log(this.publications);
 
       },
       error=>{
@@ -125,10 +126,11 @@ export class MainComponent implements OnInit {
   realizarcomentario(idPub){
     this.comentario.usuario_id = this.users.usuarioDB.user_id
     this.comentario.publicacion_id = idPub
+
     this._serviceMain.insertComentario(this.comentario).subscribe(
       response=>{
         this.comentario.comentario = '';
-        this.getPublicaciones();
+        // this.getPublicaciones();
       },
       error=>{
         console.log(<any>error);

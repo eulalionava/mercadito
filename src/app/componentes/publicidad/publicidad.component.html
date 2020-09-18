@@ -1,5 +1,5 @@
 <div>
-    <form #formPublicidad="ngForm">
+    <form #formPublicidad="ngForm" *ngIf="user.usuarioDB.user_tipo == 'A' ">
         <input type="file" class="form-control mb-1" (change)="fileChangePublicidad($event)">
         <input type="text" placeholder="Escribe el texto de tu publicidad" class="form-control mb-1"
         name="publi" #publi="ngModel" [(ngModel)]="publicidad.publicidad" required>
@@ -10,11 +10,9 @@
 <div class="col-3 barra-lateral-derecha d-none d-lg-block">
     <h3>Publicidad</h3>
     <div class="ads" *ngFor="let publi of publicidades">
-        <a href="#" class="mb-3 d-block"><img src="http://localhost:4000/imgpublicidad/{{publi.imagen}}" alt="" width="300" height="200"></a>
+        <img src="http://localhost:4000/imgpublicidad/{{publi.imagen}}" alt="" width="300" height="200">
     </div>
-    <footer class="justify-content-between">
-        <a href="#" class="w-100">Privacidad</a>
-        <a href="#" class="w-100">Condiciones</a>
-        <a href="#" class="w-100">Publicidad</a>
+    <footer class="d-flex justify-content-between">
+        <hr>
     </footer>
 </div>

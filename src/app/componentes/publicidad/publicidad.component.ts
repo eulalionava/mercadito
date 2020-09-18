@@ -11,11 +11,13 @@ export class PublicidadComponent implements OnInit {
 
   public publicidad:Publicidad
   public publicidades:any
+  public user
 
   constructor(
     private _servicePublicidad:PublicidadService
     ) {
     this.publicidad = new Publicidad(1,'','','S')
+    this.user = JSON.parse(localStorage.getItem('sesion'));
   }
 
   ngOnInit(): void {

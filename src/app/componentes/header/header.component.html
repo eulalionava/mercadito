@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="_service.auth()">
     <div class="container">
         <div class="row">
             <div class="col-auto d-none d-md-block logo">
@@ -20,9 +20,9 @@
                 <a class="text-white" href=""><i class="fas fa-users"></i></a>
                 <a class="text-white" href=""><i class="fas fa-bell"></i></a>
                 <a class="text-white" href=""><i class="fas fa-comments"></i></a>
-
-                <a href="#" class="imagen">
-                    <img class="img-circle" src="http://localhost:4000/getimgperfil/{{imagenDePerfil}}" width="22" height="22" alt="">
+                <a class="imagen">
+                    <input type="button" class="btn btn-primary btn-sm" value="cerrar sesion" (click)="closeSesion()">
+                    <img class="img-circle" src="http://localhost:4000/getimgperfil/{{_service.getImgSesion()}}" width="30" height="30" alt="imagen">
                 </a>
             </nav>
         </div>

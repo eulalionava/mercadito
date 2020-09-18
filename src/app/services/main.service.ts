@@ -14,6 +14,25 @@ export class MainService {
     this.url = GLOBAL.url;
   }
 
+  //VERIFICAR LA SESION
+  auth(){
+    if(sessionStorage.getItem('sesion') || localStorage.getItem('sesion')){
+      return true
+    }else{
+      return false
+    }
+  }
+
+  //OBTENER IMAGEN DE SESION
+  getImgSesion(){
+    let sesion = JSON.parse(localStorage.getItem('sesion'));
+
+    let img = sesion.usuarioDB.user_imagen
+
+    return img
+    
+  }
+
   getCodigo(codigo,token){
     let headers = new HttpHeaders();
     headers=headers.set('Content-Type','application/json');

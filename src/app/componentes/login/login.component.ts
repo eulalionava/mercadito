@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   iniciando(form){
     this._serviceLogin.login(this.usuario).subscribe(
       response=>{
-        console.log(response);
         localStorage.setItem('sesion',JSON.stringify(response['usuario']));
         if(response['ok']){
           this._router.navigate(['main'])
