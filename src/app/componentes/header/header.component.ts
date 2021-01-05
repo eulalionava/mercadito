@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
     private _router:Router,
     public _service:MainService
   ) { 
-    this.user = JSON.parse(localStorage.getItem('sesion'))
-    this.imagenDePerfil = this.user.usuarioDB.user_imagen
+    this.user = JSON.parse(localStorage.getItem('sesion'));
+    this.imagenDePerfil = this.user.usuarioDB.user_imagen;
   }
 
   ngOnInit(): void {
